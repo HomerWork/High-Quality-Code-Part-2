@@ -45,7 +45,7 @@
     <Compile Include="ExamResult.cs" />
     <Compile Include="SimpleMathExam.cs" />
     <Compile Include="ExceptionsHomework.cs" />
-    <Compile Include="Exam.cs" />
+    <Compile Include="IExam.cs" />
     <Compile Include="Student.cs" />
   </ItemGroup>
   <ItemGroup>

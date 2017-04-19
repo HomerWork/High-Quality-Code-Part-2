@@ -1,28 +1,34 @@
 ﻿using System;
 
-public class CSharpExam : Exam
+public class CSharpExam : IExam
 {
-    public int Score { get; private set; }
+    private readonly int score;
 
     public CSharpExam(int score)
     {
         if (score < 0)
         {
-            throw new NullReferenceException();
+            throw new ArgumentOutOfRangeException("Score cannot be negative!");
         }
 
-        this.Score = score;
+        if (100 < score)
+        {
+            throw new ArgumentOutOfRangeException("Score cannot be greater than 100!");
+        }
+
+        this.score = score;
     }
 
-    public override ExamResult Check()
+    public int Score
     {
-        if (Score < 0 || Score > 100)
+        get
         {
-            throw new InvalidOperationException();
+            return this.score;
         }
-        else
-        {
-            return new ExamResult(this.Score, 0, 100, "Exam results calculated by score.");
-        }
+    }
+
+    public ExamResult Check()
+    {
+        return new ExamResult(this.Score, 0, 100, "Exam results calculated by score.");
     }
 }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Student
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public IList<Exam> Exams { get; set; }
-
-    public Student(string firstName, string lastName, IList<Exam> exams = null)
+    public Student(string firstName, string lastName, IList<IExam> exams = null)
     {
         if (firstName == null)
         {
@@ -26,6 +22,12 @@ public class Student
         this.LastName = lastName;
         this.Exams = exams;
     }
+
+    public string FirstName { get; set; }
+
+    public string LastName { get; set; }
+
+    public IList<IExam> Exams { get; set; }
 
     public IList<ExamResult> CheckExams()
     {
@@ -64,7 +66,7 @@ public class Student
         }
 
         double[] examScore = new double[this.Exams.Count];
-        IList<ExamResult> examResults = CheckExams();
+        IList<ExamResult> examResults = this.CheckExams();
         for (int i = 0; i < examResults.Count; i++)
         {
             examScore[i] = 
